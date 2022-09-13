@@ -81,7 +81,6 @@ jobs:
           command: |
             cd frontend
             npm run test
-            npm run test:watch
             npm run pretest:cov
             npm run test:cov
      
@@ -100,7 +99,6 @@ jobs:
         command: |
           cd backend
           npm run test
-          npm run test:watch
           npm run test:cov
           npm run test:e2e
          
