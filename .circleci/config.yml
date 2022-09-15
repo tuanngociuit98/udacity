@@ -147,7 +147,7 @@ jobs:
           channel: "#devop-team"
           template: basic_fail_1
       - slack/notify:
-          event: success
+          event: always
           channel: "#devop-team"
           template: basic_success_1
 
