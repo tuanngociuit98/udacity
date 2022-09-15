@@ -333,8 +333,8 @@ workflows:
       # - test-backend:
       #     requires: [build-backend]
       - scan-backend:
-          context: slack-secrets
-          requires: [build-backend]
+          
+          # requires: [build-backend]
       # - scan-frontend:
       #     requires: [build-frontend]
       
