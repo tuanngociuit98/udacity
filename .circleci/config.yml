@@ -140,7 +140,7 @@ jobs:
             npm audit --audit-level=critical
       - slack/notify:
           event: fail
-          template: basic_fail_1
+          template: basic_fail_cs
       - slack/notify:
           event: pass
           template: basic_success_1
