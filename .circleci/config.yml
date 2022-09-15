@@ -148,7 +148,7 @@ jobs:
           template: basic_fail_1
       - slack/notify:
           event: pass
-          channel: $SLACK_CHANNEL
+          channel: "#devop-team"
           template: basic_success_1
 
 
