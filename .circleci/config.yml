@@ -115,7 +115,7 @@ jobs:
             npm install
             npm audit fix --audit-level=critical --force
             npm audit --audit-level=critical
-      - notify      
+          
 
   scan-backend:
     docker:
@@ -133,20 +133,16 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --forc
             npm audit --audit-level=critical
-      - notify
-
-
-          
-  notify:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
       - slack/notify:
           event: fail
           template: basic_fail_1
       - slack/notify:
           event: pass
-          template: success_tagged_deploy_1    
+          template: success_tagged_deploy_1
+
+
+          
+   
 
 
 
