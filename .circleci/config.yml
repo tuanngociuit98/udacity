@@ -142,7 +142,14 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - notify
+      - slack/notify:
+          event: fail
+          channel: $SLACK_CHANNEL
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          channel: $SLACK_CHANNEL
+          template: basic_success_1
 
 
           
