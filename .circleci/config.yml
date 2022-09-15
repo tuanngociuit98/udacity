@@ -43,7 +43,7 @@ commands:
       - slack/notify:
           event: pass
           channel: $SLACK_CHANNEL
-          template: basic_success_1
+          template: success_tagged_deploy_1
 jobs:
   build-frontend:
     docker:
@@ -93,7 +93,7 @@ jobs:
           command: |
             cd frontend
             npm run test
-            
+     - notify       
                
   test-backend:
     docker:
@@ -107,6 +107,7 @@ jobs:
         command: |
           cd backend
           npm run test
+     - notify     
 
   scan-frontend:
     docker:
@@ -142,85 +143,7 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - slack/notify:
-          event: fail
-          channel: "#devop-team"
-          template: basic_fail_1
-
-      - slack/notify:
-          event: pass
-          channel: "#devop-team"
-          custom: |
-            {
-                        	"text": "CircleCI job succeeded!",
-                        	"blocks": [
-                        		{
-                        			"type": "header",
-                        			"text": {
-                        				"type": "plain_text",
-                        				"text": "Job Succeeded. :white_check_mark:",
-                        				"emoji": true
-                        			}
-                        		},
-                        		{
-                        			"type": "section",
-                        			"fields": [
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Job*: ${CIRCLE_JOB}"
-                        				}
-                        			]
-                        		},
-                        		{
-                        			"type": "section",
-                        			"fields": [
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Project*: $CIRCLE_PROJECT_REPONAME"
-                        				},
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Branch*: $CIRCLE_BRANCH"
-                        				},
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Commit*: $CIRCLE_SHA1"
-                        				},
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Author*: $CIRCLE_USERNAME"
-                        				}
-                        			],
-                        			"accessory": {
-                        				"type": "image",
-                        				"image_url": "https://assets.brandfolder.com/otz5mn-bw4j2w-6jzqo8/original/circle-logo-badge-black.png",
-                        				"alt_text": "CircleCI logo"
-                        			}
-                        		},
-                        		{
-                        			"type": "section",
-                        			"fields": [
-                        				{
-                        					"type": "mrkdwn",
-                        					"text": "*Mentions*: $SLACK_PARAM_MENTIONS"
-                        				}
-                        			]
-                        		},
-                        		{
-                        			"type": "actions",
-                        			"elements": [
-                        				{
-                        					"type": "button",
-                        					"text": {
-                        						"type": "plain_text",
-                        						"text": "View Job"
-                        					},
-                        					"url": "${CIRCLE_BUILD_URL}"
-                        				}
-                        			]
-                        		}
-                        	]
-                        }
+      - notify      
 
 
           
@@ -397,17 +320,16 @@ jobs:
 workflows:
   default:
     jobs:
-      # - build-frontend
-      # - build-backend
-      # - test-frontend:
-      #     requires: [build-frontend]
-      # - test-backend:
-      #     requires: [build-backend]
-      - scan-backend
-          
-          # requires: [build-backend]
-      # - scan-frontend:
-      #     requires: [build-frontend]
+      - build-frontend
+      - build-backend
+      - test-frontend:
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
+      - scan-backend:          
+          requires: [build-backend]
+      - scan-frontend:
+          requires: [build-frontend]
       
           
       
