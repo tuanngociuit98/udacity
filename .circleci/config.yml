@@ -131,7 +131,7 @@ jobs:
             cd backend
             npm install
             npm audit fix --audit-level=critical --force
-            npm audit fix --forc
+            npm audit fix --force
             npm audit --audit-level=critical
       - slack/notify:
           event: fail
