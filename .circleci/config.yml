@@ -150,8 +150,8 @@ jobs:
       - slack/notify:
           event: pass
           channel: "#devop-team"
-          template: |
-          {
+          custom: |
+            {
                         	"text": "CircleCI job succeeded!",
                         	"blocks": [
                         		{
