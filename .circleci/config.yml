@@ -34,7 +34,16 @@ commands:
             #  Add revert code here. You can find this in the Getting Started section.
               exit 1
             fi
-            
+  notify:
+    steps:
+      - slack/notify:
+          event: fail
+          channel: $SLACK_CHANNEL
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          channel: $SLACK_CHANNEL
+          template: basic_success_1
 jobs:
   build-frontend:
     docker:
@@ -115,12 +124,7 @@ jobs:
             npm install
             
             npm audit --audit-level=critical
-      - slack/notify:
-          event: fail
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: basic_success_1    
+      - notify   
 
   scan-backend:
     docker:
@@ -138,12 +142,7 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
-      - slack/notify:
-          event: fail
-          template: basic_fail_cs
-      - slack/notify:
-          event: pass
-          template: basic_success_1
+      - notify
 
 
           
@@ -327,6 +326,7 @@ workflows:
       - test-backend:
           requires: [build-backend]
       - scan-backend:
+          context: slack-secrets
           requires: [build-backend]
       - scan-frontend:
           requires: [build-frontend]
