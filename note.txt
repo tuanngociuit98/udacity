@@ -1,0 +1,29 @@
+project3: - build infrastructure
+
+setup cloudfront
+
+- create a key pair : - name: udacity 
+- create IAM user only for programmatic access
+
+- create public S3 bucket: - name: udapeople-kk1j287demssocz43
+- run shell script:
+    cd .circleci/files
+    aws cloudformation deploy \
+         --template-file cloudfront.yml \
+         --stack-name InitialStack\
+         --parameter-overrides WorkflowID=udapeople-kk1j287demssocz437
+
+Setup circleci
+
+-   Add SSH Key pair from EC2 to the CircleCI Project Settings:
+        - SSH keys => additional ssh keys
+
+To Do:
+    1a, 
+        - Create infrastructure:
+                steps: 
+                        - checkout
+                        - create docker image
+                        - Ensure backend infrastructure
+                         
+
