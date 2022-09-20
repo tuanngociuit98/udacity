@@ -173,9 +173,13 @@ jobs:
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --parameter-overrides ID="-${CIRCLE_WORKFLOW_ID:0:7}"  
               
-      # - run:
-      #     name: Add back-end ip to ansible inventory
-      #     command: |
+      - run:
+          name: Add back-end ip to ansible inventory
+          command: |
+            cd ansible
+            BackendIp="aws ec2 describe-instances --filters "Name=instance-id,Values=i-0a00853fa4a14b102" --query 'Reservations[*].Instances[*].[PublicIpAddress]' --output text"
+            cat "backend-server ${BackendIp}" > inventory.txt
+            cat inventory.txt
             
             
       # - persist_to_workspace:
