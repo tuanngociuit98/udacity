@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   slack: circleci/slack@4.1
+  ansible-playbook: orbss/ansible-playbook@0.0.5
 
 commands:
   destroy-environment:
