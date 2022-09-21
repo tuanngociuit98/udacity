@@ -207,10 +207,16 @@ jobs:
             command: |
               cat tmp/project/.circleci/ansible/inventory.txt
 
-      - ssh_keys_with_fingerprint:
-         fingerprints:
-          - "4f:c2:dc:5f:d3:df:d5:7f:0b:78:6f:22:5c:c7:04:99:4c:f5:75:29" 
-    
+      # - ssh_keys_with_fingerprint:
+      #    fingerprints:
+      #     - 4f:c2:dc:5f:d3:df:d5:7f:0b:78:6f:22:5c:c7:04:99:4c:f5:75:29 
+      # - run: 
+      #     name: check connection to ec2
+      #     command: |
+
+      #       ssh -oStrictHostKeyChecking=no -v admin@
+
+
 
       # # attach workspace
       # - run:
