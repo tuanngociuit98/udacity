@@ -205,11 +205,11 @@ jobs:
 
       - run:
             command: |
-              # cat tmp/project/.circleci/ansible/inventory.txt
+              cat project/.circleci/ansible/inventory.txt
               ls
-      # - ssh_keys_with_fingerprint:
-      #    fingerprints:
-      #     - 4f:c2:dc:5f:d3:df:d5:7f:0b:78:6f:22:5c:c7:04:99:4c:f5:75:29 
+      - ssh_keys_with_fingerprint:
+           fingerprints:
+             - 	bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45
       # - run: 
       #     name: check connection to ec2
       #     command: |
