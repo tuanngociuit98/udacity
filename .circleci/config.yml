@@ -197,12 +197,10 @@ jobs:
     docker:
       - image: irisstream/udacity-project
         auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
-    steps:
+          username: "tuanngociuit98@gmail.com"
+          password:  "tuanngoc123"
+    steps:   
       - checkout
-          
-     
       # attach workspace
       - attach_workspace:
           at: ~/
