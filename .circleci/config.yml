@@ -195,30 +195,27 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: circleci/node:13.8.0
+      - image: irisstream/udacity-project
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     steps:
       - checkout
           
-      # Add ssh keys with fingerprint
+     
+      # attach workspace
       - attach_workspace:
           at: ~/
       - run:
             command: |
               cat .circleci/ansible/inventory.txt
-              ls
-      # - ssh_keys_with_fingerprint:
-      #      fingerprints:
-      #        - "bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45"
-     
+       # Add ssh keys with fingerprint        
+      - add_ssh_keys:
+           fingerprints:
+             - "bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45"
 
-
-
-      # # attach workspace
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       # Your code here
-      #       exit 1
+      
+      
       # - run:
       #     name: Configure server
       #     command: |
