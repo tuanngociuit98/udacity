@@ -204,11 +204,11 @@ jobs:
           at: ~/
       - run:
             command: |
-              cat project/.circleci/ansible/inventory.txt
+              cat .circleci/ansible/inventory.txt
               ls
-      # - ssh_keys_with_fingerprint:
-      #      fingerprints:
-      #        - "bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45"
+      - ssh_keys_with_fingerprint:
+           fingerprints:
+             - "bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45"
      
 
 
