@@ -202,7 +202,6 @@ jobs:
       # Add ssh keys with fingerprint
       - attach_workspace:
           at: ~/
-
       - run:
             command: |
               cat project/.circleci/ansible/inventory.txt
