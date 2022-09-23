@@ -190,13 +190,12 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/ansible/inventory.txt
+            - .circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure      
 
   configure-infrastructure:
     docker:
-      - image: irisstream/udacity-project
-       
+      - image: python:3.9.0-alpine       
     steps:   
       - checkout
       # attach workspace
@@ -208,10 +207,12 @@ jobs:
        # Add ssh keys with fingerprint        
       - add_ssh_keys:
            fingerprints:
-             - "bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45"
-
-      
-      
+             - "bc:a6:e7:89:5d:d9:72:bd:2f:46:db:ac:28:9c:ed:45"    
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+            ansible --version
       - run:
           name: Configure server
           command: |            # Your code here
