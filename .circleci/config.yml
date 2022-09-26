@@ -195,7 +195,7 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: circleci/python      
+      - image: circleci/python:3.9      
     steps:   
       - checkout
       # attach workspace
@@ -214,14 +214,12 @@ jobs:
             python3 -m venv env
             . env/bin/activate
             pip install ansible
-           
-           
-
       - run:
           name: Configure server
-          command: |            # Your code here
+          command: |       
+            ansible-playbook --version
             cd .circleci/ansible
-            ansible-playbook -i inventory.txt configure-server.yml
+            # ansible-playbook -i inventory.txt configure-server.yml
 
       - save_cache:
          paths:
