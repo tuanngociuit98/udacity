@@ -190,7 +190,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - .circleci/ansible/inventory.txt
+            - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure      
 
   configure-infrastructure:
@@ -217,7 +217,7 @@ jobs:
             pip install -r requirements.txt
             sudo apt update
             sudo apt install rsync
-            
+
       - run:
           name: Configure server
           command: |            # Your code here
