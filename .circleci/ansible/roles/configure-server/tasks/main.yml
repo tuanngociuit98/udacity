@@ -1,13 +1,21 @@
-- name: Upgrade all packages
-  ansible.builtin.apt:
-    name: '*'
-    state: latest
-
-- name: "Install nodejs, npm and pm2"
-  ansible.builtin.apt:
-    name: "{{packages}}"
-    vars:
-      packages:
-        - npm
-        - nodejs
-        - pm2
+- name: "update all packages"
+  become: true
+  apt:
+    update_cache: yes
+- name: "upgrade all packages"
+  become: true
+  apt:
+    upgrade: yes
+- name: "install nodejs and npm"
+  become: true
+  apt:
+      name: ["nodejs", "npm"]
+      state: latest
+      update_cache: yes    
+- name: "install pm2"
+  become: true
+  npm:
+      name: pm2
+      global: yes
+      production: yes
+      state: present      
