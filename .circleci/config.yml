@@ -212,6 +212,7 @@ jobs:
           name: Install dependencies
           command: |
             python3 -m venv env
+            pip install --upgrade --ignore-installed pip setuptools
             . env/bin/activate
             pip install ansible
             pip install -r requirements.txt
@@ -223,6 +224,11 @@ jobs:
           command: |            # Your code here
             cd .circleci/ansible
             ansible-playbook -i inventory.txt configure-server.yml
+
+      - save_cache:
+         paths:
+           - "env"
+         key: backend-build
             
       # Here's where you will add some code to rollback on failure      
 
