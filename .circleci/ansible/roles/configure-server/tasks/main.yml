@@ -1,0 +1,13 @@
+- name: Upgrade all packages
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+
+- name: "Install nodejs, npm and pm2"
+  ansible.builtin.yum:
+    name: "{{packages}}"
+    vars:
+      packages:
+        - npm
+        - nodejs
+        - pm2
