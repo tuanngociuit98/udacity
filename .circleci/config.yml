@@ -250,6 +250,7 @@ jobs:
 
             cd backend
             sudo npm install 
+            npm i tsc
             sudo npm run build
             sudo npm audit fix -f
             sudo npm run migrations > migrations_dump.txt
