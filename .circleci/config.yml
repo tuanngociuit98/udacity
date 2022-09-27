@@ -252,15 +252,9 @@ jobs:
             sudo npm install --unsafe-perm -g expo-cli
             sudo npm add -g typescript 
             sudo npm run build
-            
+            sudo npm run migrations > migrations_dump.txt
             # Run and save the migration output
           
-            
-      - run: 
-          name: Run migration
-          command: |
-            cd backend
-            sudo npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to memstash
           command: |
