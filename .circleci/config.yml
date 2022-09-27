@@ -249,9 +249,8 @@ jobs:
           command: |
 
             cd backend
-            sudo npm install --unsafe-perm -g expo-cli
+            sudo npm install 
             sudo npm add -g typescript 
-            
             sudo npm run migrations > migrations_dump.txt
             # Run and save the migration output
           
