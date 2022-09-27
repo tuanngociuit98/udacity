@@ -248,8 +248,6 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            npm cache clean --force
-            npm run build
             npm install
             npm install -g typescript 
             # Run and save the migration output
