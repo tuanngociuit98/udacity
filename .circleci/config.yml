@@ -247,9 +247,12 @@ jobs:
       - run:
           name: Run migrations
           command: |
+            npm cache clean –force  
+      - run:
+          name: Run migrations
+          command: |
             cd backend
             sudo npm install 
-            npm install typescript
             sudo npm run build
             sudo npm audit fix -f
             sudo npm run migrations > migrations_dump.txt
