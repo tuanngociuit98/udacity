@@ -252,7 +252,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            sudo npm install && sudo npm install typescript 
+            sudo npm install && sudo npm install -g typescript 
             
             sudo npm run build
             sudo npm audit fix -f
