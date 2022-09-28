@@ -5,7 +5,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "build": "sudo tsc",
+    "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts",
     "start:dev": "nodemon",
@@ -64,9 +64,9 @@
     "typeorm": "^0.2.24",
     "uuid": "^3.4.0",
     "winston-loggly-bulk": "^2.0.3",
-    "winston-slack-webhook": "^0.1.6"
-  },
-  "devDependencies": {
+    "winston-slack-webhook": "^0.1.6",
+    "tsc":"^2.0.4"
+  }, "devDependencies": {
     "@nestjs/testing": "^6.11.11",
     "@types/express": "^4.17.3",
     "@types/jest": "^24.9.1",
