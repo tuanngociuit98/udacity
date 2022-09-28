@@ -1,0 +1,26 @@
+- name: "create directory"
+  become: true
+  file:
+    path: /home/server
+    state: directory
+    mode: 0755
+
+- name: clone artifact to server directory
+  become: true
+  copy:
+    src: ~/project/artifact.tar.gz
+    dest: /home/server/artifact.tar.gz
+
+- name: untaz
+  become: true
+  shell: |
+      cd /home/app
+      tar -vxf artifact.tar.gz
+
+- name: build and start node
+  shell: |
+    cd /home/app
+    npm install
+    pm2 stop default
+    pm2 start npm -- start      
+ 

@@ -344,7 +344,7 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-           sed 's/local/production/g' backend/.env
+            sed 's/local/production/g' backend/.env
             cd backend
             npm i
             npm run build
@@ -444,8 +444,8 @@ workflows:
           requires: [configure-infrastructure]
       - deploy-frontend:
            requires: [run-migrations]
-      # - deploy-backend:
-      #     requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
       # - smoke-test:
       #     requires: [deploy-backend, deploy-frontend]
       # - cloudfront-update:
