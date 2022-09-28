@@ -286,26 +286,15 @@ jobs:
 
   deploy-frontend:
     docker:
-    - image: circleci/python:3.9
+    - image: python:3.11-rc-alpine
       # Docker image here that supports AWS CLI
     steps:
       # Checkout code from git
       - checkout
       - run:
           name: Install dependencies
-          command: |
-
-            
-            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            python3 get-pip.py --user
-            python3 -m pip install --user ansible
-            python3 -m pip install --user ansible-core==2.12.3
-            ansible-playbook --version
-
-            curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-
-            apk add --update ansible tar npm curl aws-cli
+          command: 
+            apk add --update ansible tar npm curl aws-cli nodejs
       - attach_workspace:
           at: ~/
 
@@ -335,7 +324,7 @@ jobs:
   deploy-backend:
     docker:
       # Docker image here that supports Ansible
-      - image: circleci/python:3.9
+      - image: python:3.11-rc-alpine
     steps:
       # Checkout code from git
       - checkout
