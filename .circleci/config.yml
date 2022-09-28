@@ -146,6 +146,7 @@ jobs:
             npm audit fix --audit-level=critical --force
             npm audit fix --force
             npm audit --audit-level=critical
+
       - notify           
    
 
@@ -257,7 +258,7 @@ jobs:
           command: |
             cd backend
             npm install  
-            npm audit fix -f 
+            cat .ENV
             # Run and save the migration output
       - run:
           name: Run migrations
