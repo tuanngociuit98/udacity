@@ -375,16 +375,12 @@ jobs:
             apk add --no-cache aws-cli
       - attach_workspace:
           at: ~/
-      - run:
-          name: Get backend url
-          command: |
-            BACKEND_IP=$(tail -n 1 .circleci/ansible/inventory.txt)
-            export API_URL="http://${BACKEND_IP}:3030"
-            echo "${API_URL}"
+      
       - run:
           name: Backend smoke test.
           command: |
             # your code here
+             BACKEND_IP=$(tail -n 1 .circleci/ansible/inventory.txt)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
             if curl "${API_URL}/api/status" | grep "ok"
