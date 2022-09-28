@@ -14,12 +14,12 @@
 - name: untaz
   become: true
   shell: |
-      cd /home/app
+      cd /home/server
       tar -vxf artifact.tar.gz
 
 - name: build and start node
   shell: |
-    cd /home/app
+    cd /home/server
     npm install
     pm2 stop default
     pm2 start npm -- start      
