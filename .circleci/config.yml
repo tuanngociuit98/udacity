@@ -21,7 +21,7 @@ commands:
 
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
-    parameters:
+   
       # Add parameter here     
     steps:
       - run:
@@ -398,10 +398,12 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
              # Change this to 0 after the job fails
-              return 1
+              return 0
             else
               return 1
             fi
+      -  destroy-environment
+      -  revert-migrations    
 #       # Here's where you will add some code to rollback on failure  
 
 #   cloudfront-update:
