@@ -411,7 +411,7 @@ jobs:
 
   cloudfront-update:
     docker:
-      - image:  amazon/cli
+      - image: amazon/aws-cli
     steps:
       # Checkout code from git
       - checkout
