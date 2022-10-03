@@ -308,7 +308,7 @@ jobs:
           command: |
             BACKEND_IP=$(tail -n 1 .circleci/ansible/inventory.txt)
             export API_URL="http://${BACKEND_IP}:3030"
-            echo "${API_URL}"
+            echo "${API_URL}" >> frontend/.env
 
       - run:
           name: Deploy frontend objects
@@ -375,7 +375,7 @@ jobs:
             # your code here
             apk add --update ansible tar npm curl
             apk add --no-cache aws-cli
-            
+
       - attach_workspace:
           at: ~/
       
