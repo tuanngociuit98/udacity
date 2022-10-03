@@ -375,6 +375,7 @@ jobs:
             # your code here
             apk add --update ansible tar npm curl
             apk add --no-cache aws-cli
+            
       - attach_workspace:
           at: ~/
       
